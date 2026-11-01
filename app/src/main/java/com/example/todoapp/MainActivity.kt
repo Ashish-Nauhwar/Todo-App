@@ -1,3 +1,7 @@
+/**
+ * The main entry point of the Android application.
+ * It hosts the Jetpack Compose UI and sets up the root content for the app.
+ */
 package com.example.todoapp
 
 import android.os.Bundle

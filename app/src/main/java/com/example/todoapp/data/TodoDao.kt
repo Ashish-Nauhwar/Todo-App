@@ -1,3 +1,8 @@
+/**
+ * Data Access Object (DAO) for the Todo entity.
+ * This interface provides the methods and SQL queries needed to interact with the "todos" table,
+ * such as inserting, deleting, and fetching todo items.
+ */
 package com.example.todoapp.data
 
 import androidx.room.Dao

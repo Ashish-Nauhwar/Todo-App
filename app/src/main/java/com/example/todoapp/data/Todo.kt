@@ -1,3 +1,7 @@
+/**
+ * Represents the Data Model/Entity for a single Todo item.
+ * This class defines the schema for the "todos" table in the local SQLite database.
+ */
 package com.example.todoapp.data
 
 import androidx.room.Entity
