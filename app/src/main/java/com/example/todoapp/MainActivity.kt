@@ -15,37 +15,34 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.room.Room
+import com.example.todoapp.data.TodoDatabase
+import com.example.todoapp.data.TodoRepository
 import com.example.todoapp.ui.theme.TodoAppTheme
+import com.example.todoapp.ui.theme.TodoScreen
+import com.example.todoapp.viewmodel.TodoViewModel
+import com.example.todoapp.viewmodel.TodoViewModelFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        val db = Room.databaseBuilder(
+            applicationContext,
+            TodoDatabase::class.java,
+            "todo_db"
+        ).build()
+
+        val repository = TodoRepository(db.todoDao())
+        val factory = TodoViewModelFactory(repository)
+
         setContent {
-            TodoAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+
+            val viewModel: TodoViewModel = viewModel(factory = factory)
+            TodoScreen(viewModel)
+
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TodoAppTheme {
-        Greeting("Android")
-    }
-}

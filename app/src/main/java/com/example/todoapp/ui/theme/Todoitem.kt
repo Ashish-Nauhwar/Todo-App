@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
@@ -27,7 +29,7 @@ fun TodoItem(todo: Todo, onDelete: (Todo) -> Unit , onToggle: (Todo)-> Unit){
         .fillMaxWidth()
         .padding(vertical = 4.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 5.dp),
-        colors = CardDefaults.cardColors(contentColor = Color.White)
+        colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Row(Modifier.padding(12.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -35,12 +37,12 @@ fun TodoItem(todo: Todo, onDelete: (Todo) -> Unit , onToggle: (Todo)-> Unit){
         ) {
             Row(verticalAlignment = Alignment.CenterVertically){
                 Checkbox(
-                    checked = todo.isDone,
-                    onCheckedChange = {onToggle(todo.copy(isDone = it))}
+                    checked = todo.done,
+                    onCheckedChange = {onToggle(todo.copy(done = it))}
                 )
                 Text(text = todo.title,
                     modifier = Modifier.weight(1f),
-                    style = if(todo.isDone)
+                    style = if(todo.done)
                         MaterialTheme.typography.bodyLarge.copy(textDecoration = TextDecoration.LineThrough)
                     else
                         MaterialTheme.typography.bodyLarge
@@ -48,7 +50,7 @@ fun TodoItem(todo: Todo, onDelete: (Todo) -> Unit , onToggle: (Todo)-> Unit){
                 IconButton(
                     onClick = {onDelete(todo)}
                 ) {
-                    Icon(Icons.Default.Delete, contentDescription = "Delete")
+                    Icon(Icons.Default.Delete, contentDescription = "Delete Todo")
                 }
             }
         }

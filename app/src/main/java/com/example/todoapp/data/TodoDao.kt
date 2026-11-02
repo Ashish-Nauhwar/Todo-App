@@ -19,8 +19,8 @@ interface TodoDao {
     fun getAllTodos(): Flow<List<Todo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTodo(todo: Todo)
+    suspend fun insertTodo(todo: Todo): Long
 
     @Delete
-    suspend fun deleteTodo(todo: Todo)
+    suspend fun deleteTodo(todo: Todo): Int
 }
