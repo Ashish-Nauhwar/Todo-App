@@ -38,7 +38,7 @@ fun TodoItem(todo: Todo, onDelete: (Todo) -> Unit , onToggle: (Todo)-> Unit){
             Row(verticalAlignment = Alignment.CenterVertically){
                 Checkbox(
                     checked = todo.done,
-                    onCheckedChange = {onToggle(todo.copy(done = it))}
+                    onCheckedChange = { onToggle(todo) }
                 )
                 Text(text = todo.title,
                     modifier = Modifier.weight(1f),

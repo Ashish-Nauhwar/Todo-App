@@ -30,7 +30,8 @@ class TodoViewModel(private val repository: TodoRepository): ViewModel() {
     }
 
     fun toggleDone(todo: Todo) = viewModelScope.launch {
-        repository.updateTodo(todo)
+        val updatedTodo = todo.copy(done = !todo.done)
+        repository.updateTodo(updatedTodo)
     }
 
 
