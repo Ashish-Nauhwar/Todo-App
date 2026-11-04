@@ -7,10 +7,11 @@ package com.example.todoapp.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//mapping it to a database table.
 @Entity(tableName = "todos")
 data class Todo(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    //@Primarykey batata hai ki is property ko table ki Primary Key banana hai
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String,
     val done: Boolean = false
 )
